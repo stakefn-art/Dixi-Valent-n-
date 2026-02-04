@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para DIXI 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-image: url("https://i.imgur.com/6WQpP0P.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  text-align: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.92);
+  margin: 40px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #ff5c8a;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yesBtn {
+  background: #ff5c8a;
+  color: white;
+  transition: transform 0.3s;
+}
+
+#noBtn {
+  background: #ccc;
+  position: absolute;
+}
+
+.musicBtn {
+  background: #4a90e2;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="step1">
+  <h1>DIXI 💕</h1>
+  <p>¿Quieres ser mi San Valentín? 🐶❤️</p>
+  <button id="yesBtn" onclick="yes()">Sí 💖</button>
+  <button id="noBtn" onmouseover="moveNo()">No 😶</button>
+</div>
+
+<div class="card hidden" id="step2">
+  <img src="https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif">
+  <h2>Te amo, DIXI 💘</h2>
+  <p>
+    Eres mi 14 de febrero,  
+    mi persona favorita,  
+    mi sonrisa diaria y  
+    mi San Valentín 💞
+  </p>
+
+  <button class="musicBtn" onclick="openMusic()">💃🕺 Bailamos, DIXI</button>
+</div>
+
+<script>
+let scale = 1;
+
+function moveNo() {
+  const no = document.getElementById("noBtn");
+  no.style.left = Math.random() * 80 + "%";
+  no.style.top = Math.random() * 80 + "%";
+}
+
+function yes() {
+  scale += 0.2;
+  document.getElementById("yesBtn").style.transform = `scale(${scale})`;
+  setTimeout(() => {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+  }, 500);
+}
+
+function openMusic() {
+  window.open(
+    "https://www.youtube.com/watch?v=H8x2k2mG1n0",
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>
