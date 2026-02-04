@@ -2,55 +2,57 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para DIXI 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para DIXI 💙</title>
 
 <style>
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-image: url("https://i.imgur.com/6WQpP0P.jpg");
+  height: 100vh;
+  background-image: url("AQUI_VA_TU_IMAGEN_DE_SNOOPY_FONDO");
   background-size: cover;
-  background-repeat: repeat;
-  text-align: center;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
 }
 
 .card {
-  background: rgba(255,255,255,0.92);
-  margin: 40px auto;
-  padding: 25px;
+  background: rgba(255,255,255,0.95);
   width: 90%;
-  max-width: 420px;
-  border-radius: 20px;
+  max-width: 360px;
+  padding: 25px;
+  border-radius: 22px;
+  text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-h1 {
-  color: #ff5c8a;
+img {
+  width: 200px;
+  border-radius: 15px;
 }
 
 button {
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 12px;
   border: none;
+  padding: 12px 22px;
+  border-radius: 20px;
+  font-size: 1rem;
   cursor: pointer;
-  margin: 10px;
+  margin: 8px;
 }
 
-#yesBtn {
-  background: #ff5c8a;
+.btn-blue {
+  background: #6fa8ff;
   color: white;
-  transition: transform 0.3s;
 }
 
-#noBtn {
-  background: #ccc;
-  position: absolute;
+.btn-red {
+  background: #ff6f6f;
+  color: white;
 }
 
-.musicBtn {
-  background: #4a90e2;
+.btn-music {
+  background: #000;
   color: white;
 }
 
@@ -58,9 +60,8 @@ button {
   display: none;
 }
 
-img {
-  width: 100%;
-  border-radius: 15px;
+p {
+  color: #333;
 }
 </style>
 </head>
@@ -68,48 +69,71 @@ img {
 <body>
 
 <div class="card" id="step1">
-  <h1>DIXI 💕</h1>
-  <p>¿Quieres ser mi San Valentín? 🐶❤️</p>
-  <button id="yesBtn" onclick="yes()">Sí 💖</button>
-  <button id="noBtn" onmouseover="moveNo()">No 😶</button>
+  <img src="AQUI_TU_IMAGEN_SNOOPY_1">
+  <h2>Hiii DIXI 💙</h2>
+  <p>Toca para empezar 🐶</p>
+  <button class="btn-blue" onclick="next(1)">Siguiente ➜</button>
 </div>
 
 <div class="card hidden" id="step2">
-  <img src="https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif">
-  <h2>Te amo, DIXI 💘</h2>
-  <p>
-    Eres mi 14 de febrero,  
-    mi persona favorita,  
-    mi sonrisa diaria y  
-    mi San Valentín 💞
-  </p>
-
-  <button class="musicBtn" onclick="openMusic()">💃🕺 Bailamos, DIXI</button>
+  <img src="AQUI_TU_IMAGEN_SNOOPY_2">
+  <p>¿Quieres abrir esto? 🥺</p>
+  <button class="btn-blue" onclick="next(2)">Sí 💌</button>
+  <button class="btn-red" onclick="again()">No 🙈</button>
 </div>
 
+<div class="card hidden" id="step3">
+  <img src="AQUI_TU_IMAGEN_SNOOPY_3">
+  <p>Ayy no 😭 intenta otra vez</p>
+  <button class="btn-blue" onclick="back()">Otra vez 🥹</button>
+</div>
+
+<div class="card hidden" id="step4">
+  <img src="AQUI_TU_IMAGEN_SNOOPY_4">
+  <p>
+    DIXI 💖<br><br>
+    Tenerte en mi vida es lo más bonito.<br>
+    Me haces sonreír incluso sin razón.<br><br>
+    ¿Quieres ser mi San Valentín? 💌
+  </p>
+
+  <button class="btn-music" onclick="playMusic()">🎵 Reproducir música</button><br>
+  <button class="btn-blue" onclick="final()">Sí 💘</button>
+</div>
+
+<div class="card hidden" id="final">
+  <img src="AQUI_TU_IMAGEN_SNOOPY_FINAL">
+  <h2>Te amo DIXI 💖</h2>
+  <p>Mi San Valentín 🌹🐶</p>
+</div>
+
+<audio id="music">
+  <source src="AQUI_TU_LINK_DE_MUSICA.mp3">
+</audio>
+
 <script>
-let scale = 1;
-
-function moveNo() {
-  const no = document.getElementById("noBtn");
-  no.style.left = Math.random() * 80 + "%";
-  no.style.top = Math.random() * 80 + "%";
+function next(n) {
+  document.getElementById("step"+n).classList.add("hidden");
+  document.getElementById("step"+(n+1)).classList.remove("hidden");
 }
 
-function yes() {
-  scale += 0.2;
-  document.getElementById("yesBtn").style.transform = `scale(${scale})`;
-  setTimeout(() => {
-    document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
-  }, 500);
+function again() {
+  document.getElementById("step2").classList.add("hidden");
+  document.getElementById("step3").classList.remove("hidden");
 }
 
-function openMusic() {
-  window.open(
-    "https://www.youtube.com/watch?v=H8x2k2mG1n0",
-    "_blank"
-  );
+function back() {
+  document.getElementById("step3").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+function final() {
+  document.getElementById("step4").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
 }
 </script>
 
